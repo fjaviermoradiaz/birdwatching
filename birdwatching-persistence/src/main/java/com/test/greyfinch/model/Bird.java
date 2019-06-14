@@ -53,4 +53,15 @@ public class Bird implements Serializable {
     public void setColour(String colour) {
         this.colour = colour;
     }
+
+    @Override
+    public String toString() {
+        return "Bird{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", size='" + size + '\'' +
+                ", photo='" + photo + '\'' +
+                ", colour='" + colour + '\'' +
+                '}';
+    }
 }

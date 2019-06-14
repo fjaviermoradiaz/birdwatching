@@ -5,6 +5,8 @@ import com.test.greyfinch.dto.BirdDTO;
 import com.test.greyfinch.service.BirdService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -19,7 +21,7 @@ public class BirdController {
 
     @GetMapping(value = "/list")
     @ResponseBody
-    public List<BirdDTO> getAll() {
-        return service.getAll();
+    public ResponseEntity<List<BirdDTO>> getAll() {
+        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 }

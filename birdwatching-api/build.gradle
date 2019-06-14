@@ -16,4 +16,6 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     compile group: 'org.springframework.boot', name: 'spring-boot-devtools'
     compile project(':birdwatching-business')
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+
 }

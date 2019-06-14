@@ -7,6 +7,7 @@ import com.test.greyfinch.dto.ReserveCreationDTO;
 import com.test.greyfinch.dto.ReserveDTO;
 import com.test.greyfinch.dto.ReserveUpdateDTO;
 import com.test.greyfinch.model.Bird;
+import com.test.greyfinch.model.Reserve;
 import com.test.greyfinch.repository.BirdRepository;
 import com.test.greyfinch.repository.ReserveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +19,15 @@ import java.util.stream.Collectors;
 @Service
 public class ReserveService implements IReserveService {
 
-    @Autowired
     private ReserveRepository repository;
-
-    @Autowired
     private ReserveConverter converter;
 
 
-    /*@Autowired
-    public BirdService(BirdRepository birdRepository) {
-        repository = birdRepository;
-    }*/
+    @Autowired
+    public ReserveService(ReserveRepository reserveRepository, ReserveConverter reserveConverter) {
+        repository = reserveRepository;
+        converter = reserveConverter;
+    }
 
     @Override
     public List<ReserveDTO> getAll() {
@@ -37,8 +36,8 @@ public class ReserveService implements IReserveService {
     }
 
     @Override
-    public void create(ReserveCreationDTO reserveCreationDTO) {
-        repository.save(converter.toEntity(reserveCreationDTO));
+    public ReserveDTO create(ReserveCreationDTO reserveCreationDTO) {
+        return converter.toDto(repository.save(converter.toEntity(reserveCreationDTO)));
     }
 
     @Override
@@ -53,6 +52,6 @@ public class ReserveService implements IReserveService {
 
     @Override
     public ReserveDTO getById(Long id) {
-        return null;
+        return converter.toDto(repository.getOne(id));
     }
 }

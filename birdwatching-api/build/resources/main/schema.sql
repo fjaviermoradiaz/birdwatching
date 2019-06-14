@@ -26,6 +26,7 @@ create table bird_reserve
    reserve_id bigint not null,
    visit_date date not null,
    percentage double not null,
+   primary key(id),
    foreign key (bird_id) references bird(id),
    foreign key (reserve_id) references reserve(id)
 )

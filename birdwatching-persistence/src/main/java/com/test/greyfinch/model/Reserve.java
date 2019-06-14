@@ -1,8 +1,6 @@
 package com.test.greyfinch.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -13,7 +11,17 @@ public class Reserve implements Serializable {
     private String name;
     private String region;
 
+    public Reserve() {
+    }
+
+    public Reserve(Long id, String name, String region) {
+        this.id = id;
+        this.name = name;
+        this.region = region;
+    }
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -36,5 +44,14 @@ public class Reserve implements Serializable {
 
     public void setRegion(String region) {
         this.region = region;
+    }
+
+    @Override
+    public String toString() {
+        return "Reserve{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", region='" + region + '\'' +
+                '}';
     }
 }

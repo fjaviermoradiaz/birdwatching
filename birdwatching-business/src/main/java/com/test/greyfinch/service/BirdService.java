@@ -22,12 +22,6 @@ public class BirdService implements IBirdService {
     @Autowired
     private BirdConverter converter;
 
-
-    /*@Autowired
-    public BirdService(BirdRepository birdRepository) {
-        repository = birdRepository;
-    }*/
-
     @Override
     public List<BirdDTO> getAll() {
         return repository.findAll().stream().map(converter::toDto).collect(Collectors.toList());

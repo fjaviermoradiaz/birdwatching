@@ -10,7 +10,7 @@ public interface IReserveService {
 
     List<ReserveDTO> getAll();
 
-    void create(ReserveCreationDTO reserveCreationDTO);
+    ReserveDTO create(ReserveCreationDTO reserveCreationDTO);
 
     void delete(Long id);
 
