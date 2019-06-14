@@ -1,0 +1,32 @@
+buildscript{
+	ext{
+		springBootVersion = '1.5.19.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+		mavenLocal()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+allprojects{
+	group 'com.test.greyfinch'
+
+	apply plugin: 'java'
+	apply plugin: 'idea'
+	apply plugin: 'maven'
+	apply plugin: 'org.springframework.boot'
+
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+}
+dependencies {
+	testCompile group: 'junit', name: 'junit', version: '4.12'
+}

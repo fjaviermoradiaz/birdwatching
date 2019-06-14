@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'com.test.greyfinch'
+version '1.0.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    runtime group: 'com.h2database', name: 'h2'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

@@ -1,0 +1,6 @@
+
+rootProject.name = 'birdwatching'
+include 'birdwatching-persistence'
+include 'birdwatching-business'
+include 'birdwatching-api'
+
