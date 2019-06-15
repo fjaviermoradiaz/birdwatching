@@ -9,6 +9,8 @@ import com.test.greyfinch.repository.ReserveRepository;
 import com.test.greyfinch.service.BirdService;
 import com.test.greyfinch.service.ReserveService;
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,50 +19,54 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import springfox.documentation.swagger2.mappers.ModelMapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ReserveServiceTest {
 
+    private static final String NAME = "Name1";
+
+    private static final String REGION = "Region1";
+
+    private ReserveCreationDTO reserveCreationDTO;
+
+    @Mock
+    private ReserveService service;// = new ReserveService();
+
     @Mock
     private ReserveRepository repository;
-    private Reserve reserve;
-    @Mock
-    private ReserveConverter converter;
-    private ReserveCreationDTO reserveDTO;
-    private ReserveDTO dto;
-
-    @InjectMocks
-    private ReserveService service;
 
     @Before
-    public void setUp() {
-        reserve = new Reserve(1L, "Mockito", "mkyong");
+    public void prepare() {
+        Reserve reserve = new Reserve(1L,NAME,REGION);
 
-        converter = mock(ReserveConverter.class);
-        reserve = new Reserve();
-        reserveDTO = new ReserveCreationDTO();
-        reserveDTO = new ReserveCreationDTO();
-
-        reserveDTO.setName("Reserve1");
-        reserveDTO.setRegion("Reserve1");
-
-        dto = new ReserveDTO();
-        dto.setName("Reserve1");
+        reserveCreationDTO = new ReserveCreationDTO();
+        reserveCreationDTO.setName(NAME);
+        reserveCreationDTO.setRegion(REGION);
 
 
-        service = new ReserveService(repository,converter);
+        List<Reserve> reserveList = new ArrayList<>();
+        reserveList.add(reserve);
+
+        // getAllReserve
+        when(repository.findAll()).thenReturn(reserveList);
+
+        // getOneReserve
+        when(repository.getOne(anyLong())).thenReturn(reserve);
+
     }
 
     @Test
-    public void testUpdateW() {
+    public void testAllReserves() {
+        List<Reserve> reserveDTOList = repository.findAll();
 
-        ReserveService dataServiceMock = mock(ReserveService.class);
-        when(dataServiceMock.create(reserveDTO)).thenReturn(dto);
-        ReserveDTO findDTO = dataServiceMock.getById(dto.getId());
+        Assert.assertNotNull(reserveDTOList);
+        Assert.assertTrue(reserveDTOList.size() > 0);
 
-        assertEquals(findDTO.getId(), dto.getId());
+        Assert.assertEquals(reserveDTOList.get(0).getName(), NAME);
+
     }
-
-
 }

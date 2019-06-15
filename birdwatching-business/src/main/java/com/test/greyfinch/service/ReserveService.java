@@ -22,6 +22,8 @@ public class ReserveService implements IReserveService {
     private ReserveRepository repository;
     private ReserveConverter converter;
 
+    public ReserveService() {
+    }
 
     @Autowired
     public ReserveService(ReserveRepository reserveRepository, ReserveConverter reserveConverter) {
