@@ -3,12 +3,15 @@ package com.test.greyfinch.controller;
 import com.test.greyfinch.dto.ReserveCreationDTO;
 import com.test.greyfinch.dto.ReserveDTO;
 import com.test.greyfinch.dto.ReserveUpdateDTO;
+import com.test.greyfinch.exception.DeleteException;
+import com.test.greyfinch.exception.EntityNotFoundException;
 import com.test.greyfinch.service.ReserveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -26,13 +29,13 @@ public class ReserveController {
 
     @GetMapping(value = "/{id}")
     @ResponseBody
-    public ResponseEntity<ReserveDTO> getByID(@PathVariable Long id) {
+    public ResponseEntity<ReserveDTO> getByID(@PathVariable Long id) throws EntityNotFoundException {
         return new ResponseEntity<>(service.getById(id),HttpStatus.OK);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<ReserveDTO> create(@RequestBody ReserveCreationDTO reserveCreationDTO) {
+    public ResponseEntity<ReserveDTO> create(@RequestBody @Valid ReserveCreationDTO reserveCreationDTO) {
         return new ResponseEntity<>(service.create(reserveCreationDTO),HttpStatus.CREATED);
     }
 
@@ -44,7 +47,7 @@ public class ReserveController {
 
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) throws DeleteException {
         service.delete(id);
     }
 

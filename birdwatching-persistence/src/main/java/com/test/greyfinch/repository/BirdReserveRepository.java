@@ -16,6 +16,6 @@ public interface BirdReserveRepository extends JpaRepository<BirdReserve,Long> {
     @Query(value = "SELECT bird_reserve.* FROM bird_reserve " +
             " JOIN reserve on (reserve.id = bird_reserve.reserve_id) " +
             " WHERE EXTRACT(MONTH FROM bird_reserve.visit_date) = ?1 AND bird_reserve.percentage > 15 " +
-            " ORDER BY reserve.name ASC, reserve.percentage ASC", nativeQuery = true)
+            " ORDER BY reserve.name ASC, bird_reserve.percentage ASC", nativeQuery = true)
     List<BirdReserve> findByMatchMonth(@Param("filterDate") Integer month);
 }

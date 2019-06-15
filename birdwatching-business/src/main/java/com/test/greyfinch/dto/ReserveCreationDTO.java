@@ -1,11 +1,15 @@
 package com.test.greyfinch.dto;
 
 import org.springframework.stereotype.Component;
+import javax.validation.constraints.NotNull;
 
 @Component
 public class ReserveCreationDTO {
 
+    @NotNull
     private String name;
+
+    @NotNull
     private String region;
 
     public String getName() {

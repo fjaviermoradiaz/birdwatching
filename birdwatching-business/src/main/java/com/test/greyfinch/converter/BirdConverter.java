@@ -24,6 +24,7 @@ public class BirdConverter {
     public BirdExtendedDTO toDtoExtended(Bird bird) {
         BirdExtendedDTO birdDTO = new BirdExtendedDTO();
         BeanUtils.copyProperties(bird,birdDTO);
+        birdDTO.setColour(bird.getColour().split(","));
         return birdDTO;
     }
 

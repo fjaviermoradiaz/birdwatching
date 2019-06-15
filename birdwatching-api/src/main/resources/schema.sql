@@ -4,7 +4,7 @@ create table bird
 (
   id bigint auto_increment,
   name varchar(255) not null unique ,
-  size varchar(5) not null,
+  size varchar(10) not null,
   photo varchar(255) not null,
   colour varchar(255) not null,
 
@@ -19,6 +19,9 @@ create table reserve
    primary key(id),
 );
 
+CREATE INDEX INDEX_RESERVE_NAME ON reserve(name);
+
+
 create table bird_reserve
 (
    id bigint auto_increment,
@@ -30,3 +33,4 @@ create table bird_reserve
    foreign key (bird_id) references bird(id),
    foreign key (reserve_id) references reserve(id)
 )
+

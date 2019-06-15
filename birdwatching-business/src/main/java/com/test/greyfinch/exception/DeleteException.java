@@ -1,14 +1,13 @@
 package com.test.greyfinch.exception;
 
-
-public class EntityNotFoundException extends Exception {
+public class DeleteException extends Exception {
 
     private static final long serialVersionUID = -4402041616690277553L;
 
     /**
      * Base exception constructor
      */
-    public EntityNotFoundException() {
+    public DeleteException() {
         super();
     }
 
@@ -20,8 +19,8 @@ public class EntityNotFoundException extends Exception {
      * @param enableSuppression
      * @param writableStackTrace
      */
-    public EntityNotFoundException(String message, Throwable cause, boolean enableSuppression,
-                                   boolean writableStackTrace) {
+    public DeleteException(String message, Throwable cause, boolean enableSuppression,
+                           boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 
@@ -31,7 +30,7 @@ public class EntityNotFoundException extends Exception {
      * @param message
      * @param cause
      */
-    public EntityNotFoundException(String message, Throwable cause) {
+    public DeleteException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -40,7 +39,7 @@ public class EntityNotFoundException extends Exception {
      *
      * @param
      */
-    public EntityNotFoundException(String id) {
+    public DeleteException(String id) {
         super("Id " + id + " not found");
     }
 
@@ -50,7 +49,7 @@ public class EntityNotFoundException extends Exception {
      *
      * @param cause
      */
-    public EntityNotFoundException(Throwable cause) {
+    public DeleteException(Throwable cause) {
         super(cause);
     }
 }

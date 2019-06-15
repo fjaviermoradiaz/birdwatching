@@ -7,7 +7,7 @@ public class BirdExtendedDTO extends BirdDTO{
 
     private String size;
     private String photo;
-    private String colour;
+    private String[] colour;
 
     public String getSize() {
         return size;
@@ -25,11 +25,11 @@ public class BirdExtendedDTO extends BirdDTO{
         this.photo = photo;
     }
 
-    public String getColour() {
+    public String[] getColour() {
         return colour;
     }
 
-    public void setColour(String colour) {
+    public void setColour(String[] colour) {
         this.colour = colour;
     }
 }
